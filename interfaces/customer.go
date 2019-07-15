@@ -9,26 +9,26 @@ type CustomerInterface struct {
 	customer domain.CustomerStruct
 }
 
-func (c *CustomerInterface) SetFullname(fn string) (bool, error) {
-	if fn == "" {
-		return false, errors.Wrapf(nil, "new fullname must no to be empty")
+func (c *CustomerInterface) SetFullname(fn string) error {
+	if fn == "" || len(fn)<1 {
+		return errors.Wrapf(nil, "new fullname must no to be empty")
 	} else {
 		c.customer.SetFullname(fn)
 	}
-	return true, nil
+	return nil
 }
 
 func (c *CustomerInterface) GetFullname() string {
 	return c.customer.GetFullname()
 }
 
-func (c *CustomerInterface) SetBirthday(bd string) (bool, error) {
-	if bd == "" {
-		return false, errors.Wrapf(nil, "birthday must no to be empty")
+func (c *CustomerInterface) SetBirthday(bd string) error {
+	if bd == "" || len(bd)<1 {
+		return errors.Wrapf(nil, "birthday must no to be empty")
 	} else {
 		c.customer.SetBirthday(bd)
 	}
-	return true, nil
+	return nil
 }
 
 func (c *CustomerInterface) GetBirthday() string {
